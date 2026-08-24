@@ -1,0 +1,49 @@
+{
+  "tests": [
+    {
+      "id": "bug-incomplete-asks-next-field",
+      "prompt": "The Buy button does nothing when I click it.",
+      "expected": "The assistant should classify this as a bug report, recognize that the description is already provided, and ask only for the steps to reproduce the issue. It should not call the create_bug_report tool or claim that a ticket was created."
+    },
+    {
+      "id": "bug-complete-creates-ticket",
+      "prompt": "The total price is calculated incorrectly and disables the Buy button. To reproduce it, I add two different products to the cart, increase the first product's quantity to three, and then click Buy. I am using Chrome on macOS on a MacBook Pro.",
+      "expected": "The assistant should classify this as a bug report, use the supplied text as description, stepsToReproduce, and environment, call create_bug_report exactly once, and report the ticket ID returned by the tool while saying that the engineering team will follow up. It should not ask for information already supplied."
+    },
+    {
+      "id": "faq-refund-timing",
+      "prompt": "How long will it take to receive my refund?",
+      "expected": "Refunds are issued to the original payment method after the returned item is received and inspected. This typically takes 3 to 10 business days depending on the customer's bank or payment provider."
+    },
+    {
+      "id": "faq-delivery-time",
+      "prompt": "How long does delivery take?",
+      "expected": "Estimated delivery times are shown at checkout and in the shipping confirmation email, and processing normally takes 1 to 2 business days before dispatch."
+    },
+    {
+      "id": "faq-payment-declined-not-bug",
+      "prompt": "My card payment was declined. What should I do?",
+      "expected": "The assistant should treat this as a platform question rather than a software bug. It should explain that common causes include incorrect billing details, insufficient funds, bank security checks, or restrictions on international or online purchases, and suggest retrying, using another method, or contacting the bank. It should not call create_bug_report."
+    },
+    {
+      "id": "faq-damaged-item",
+      "prompt": "The item in my delivery arrived damaged. How do I handle this?",
+      "expected": "The customer should contact support within 7 days of delivery and provide photos of the item, packaging, and shipping label. The shop will arrange a replacement or refund. The assistant should not treat this as a website or app bug."
+    },
+    {
+      "id": "unsupported-policy-question",
+      "prompt": "Do you offer gift wrapping and handwritten gift messages?",
+      "expected": "Because the FAQ does not answer this question, the assistant should politely say it cannot help with the request here and refer the customer to human support at 1-800-555-0199, available Monday through Friday. It should not invent a gift-wrapping policy."
+    },
+    {
+      "id": "other-product-feedback",
+      "prompt": "I have ideas for improving your customer experience. Who can I discuss them with?",
+      "expected": "The assistant should politely redirect the customer to human support at 1-800-555-0199, available Monday through Friday. It should not call create_bug_report."
+    },
+    {
+      "id": "other-unrelated-request",
+      "prompt": "Can you recommend a good restaurant for dinner tonight?",
+      "expected": "The assistant should politely explain that it cannot help with this request and redirect the customer to human support at 1-800-555-0199, available Monday through Friday. It should not answer the restaurant question or call create_bug_report."
+    }
+  ]
+}
